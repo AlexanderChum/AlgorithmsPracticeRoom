@@ -7,8 +7,15 @@ public class Parallelogram1J {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         int inputStringsAmount = Integer.parseInt(reader.readLine());
-        for (int i = 0; i < inputStringsAmount; i++){
+        for (int i = 0; i < inputStringsAmount; i++) {
             String[] numbers = reader.readLine().split(" ");
+            for (int j = 0; j < numbers.length; j++) {
+                if ("".equals(numbers[j])) {
+                    for (int k = j; k < numbers.length - 1; k++) {
+                        numbers[k] = numbers[k + 1];
+                    }
+                }
+            }
             int x1 = Integer.parseInt(numbers[0]);
             int y1 = Integer.parseInt(numbers[1]);
             int x2 = Integer.parseInt(numbers[2]);
@@ -18,7 +25,19 @@ public class Parallelogram1J {
             int x4 = Integer.parseInt(numbers[6]);
             int y4 = Integer.parseInt(numbers[7]);
 
+            boolean pChecker = false;
+
+            if (x1 + x2 == x3 + x4 && y1 + y2 == y3 + y4) {
+                pChecker = true;
+            }
             if (x1 + x3 == x2 + x4 && y1 + y3 == y2 + y4) {
+                pChecker = true;
+            }
+            if (x1 + x4 == x2 + x3 && y1 + y4 == y2 + y3) {
+                pChecker = true;
+            }
+
+            if (pChecker) {
                 System.out.println("YES");
             } else {
                 System.out.println("NO");
