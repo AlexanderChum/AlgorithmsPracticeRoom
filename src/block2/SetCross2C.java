@@ -5,7 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -19,21 +22,19 @@ public class SetCross2C {
         StringTokenizer st2 = new StringTokenizer(secondLine);
 
         Set<Integer> firstSet = new HashSet<>();
-        Set<Integer> secondSet = new HashSet<>();
-        Set<Integer> result = new HashSet<>();
+        List<Integer> result = new ArrayList<>();
 
         while (st1.hasMoreTokens()) {
             firstSet.add(Integer.parseInt(st1.nextToken()));
         }
         while (st2.hasMoreTokens()) {
-            secondSet.add(Integer.parseInt(st2.nextToken()));
-        }
-
-        for (Integer number : firstSet) {
-            if (secondSet.contains(number)) {
+            int number = Integer.parseInt(st2.nextToken());
+            if (firstSet.contains(number)) {
                 result.add(number);
             }
         }
+
+        Collections.sort(result);
 
         try (FileWriter fw = new FileWriter("output.txt");
              PrintWriter pw = new PrintWriter(fw)) {
